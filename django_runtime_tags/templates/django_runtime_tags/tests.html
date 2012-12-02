@@ -1,18 +1,30 @@
-{% load i18n %}
-{% block head_title %}{% trans "Welcome" %}{% endblock %}
-{% block body %}
-<h1>Runtime Setting Tests</h1>
+<html>
+<head>
+<title>Runtime Tag Tests</title>
 <style>
+    body {
+        color:#666;
+        font-family:Verdana;
+    }
     table {
         border-collapse:collapse;
     }
     table, td, td {
         background-color:#ded;
         border:1px solid;
-        padding:3px;
+        padding:4px 8px 4px 8px;
+        vertical-align:top;
+    }
+    div.time {
+        font-size:.8em;
+        margin-bottom:1em;
     }
 </style>
+</head>
+<body>
 <table>
+<h1>Runtime Tag Tests</h1>
+<div class="time">It is {% now "jS F Y H:i" %}</div>
 <tr><th>Key</th><th>Value</th></tr>
 <tr><td>TestBool</td><td>{{  TestBool  }}</td></tr>
 <tr><td>TestComplex</td><td>{{  TestComplex  }}</td></tr>
@@ -27,6 +39,27 @@
 <tr><td>TestNonASCII</td><td>{{  TestNonASCII  }}</td></tr>
 <tr><td>TestReservedWord</td><td>{{  TestReservedWord  }}</td></tr>
 <tr><td>TestSingleQuote</td><td>{{  TestSingleQuote  }}</td></tr>
-<tr><td>Test Space</td><td>(expected to fail)</td></tr>
+<tr><td>TestTuple</td><td>{{  TestTuple  }}</td></tr>
 </table>
-{% endblock %}
+<h3>More Tests</h1>
+<table>
+<tr><th>Key</th><th>Value</th></tr>
+<tr><td>{{ TestInt }} > {{ TestIntNegative }}</td><td>{% if TestInt > TestIntNegative %}True{% else %}False{% endif %}</td></tr>
+<tr><td>{{ TestFloat }} > 3.14159</td><td>{% if TestFloat > 3.14159 %}True{% else %}False{% endif %}</td></tr>
+<tr><td>{{ TestInt }} + {{ TestIntNegative }}</td><td>{{ TestInt|add:TestIntNegative }}</td></tr>
+<tr><td>Iterate TestList</td><td>
+        <ul>
+            {% for art in TestList %}
+            <li>{{ art }}</li>
+            {% endfor %}
+        </ul>
+    </td></tr>
+<tr><td>Iterate TestTuple</td><td>
+        <ul>
+            {% for word in TestTuple %}
+            <li>{{ word }}</li>
+            {% endfor %}
+        </ul>
+    </td></tr>
+</table>
+

@@ -1,5 +1,7 @@
+import re
 from django.contrib import admin
-from django_runtime_tags.models import RuntimeTag
+from django.forms import ModelForm, ValidationError, RegexField
+from django_runtime_tags.models import RuntimeTag, tagname_regex
 
 
 class RuntimeTagAdmin(admin.ModelAdmin):

@@ -2,6 +2,7 @@
     Copied from http://djangosnippets.org/snippets/1694/
 """
 
+import re
 import logging
 from copy import deepcopy
 from base64 import b64encode, b64decode
@@ -13,6 +14,8 @@ except ImportError:
 
 from django.db import models
 from django.utils.encoding import force_unicode
+from django.core.exceptions import ValidationError
+
 from django_runtime_tags.safe_eval import safe_eval, UnsafeSourceError
 
 log = logging.getLogger()
@@ -77,8 +80,10 @@ class PickledObjectField(models.Field):
         self.compress = kwargs.pop('compress', False)
         self.protocol = kwargs.pop('protocol', 2)
         self.convert = kwargs.pop('convert', False)
+        #self.validators = kwargs.pop('validators', [])
         kwargs.setdefault('null', True)
         kwargs.setdefault('editable', False)
+        
         super(PickledObjectField, self).__init__(*args, **kwargs)
     
     def get_default(self):
@@ -120,6 +125,14 @@ class PickledObjectField(models.Field):
                     raise
         return value
 
+    def validate(self, value, model_instance):
+        """ Catch this error here so it handled correctly by admin form.
+            The '__' can be used in eval exploits -- disallow it.
+        """
+        #value_regex = r'(?!.*__)'
+        if '__' in value:
+            raise ValidationError("'__' not allowed.")
+
     def get_db_prep_value(self, value):
         """
         Pickle and b64encode the object, optionally compressing it.
@@ -131,6 +144,8 @@ class PickledObjectField(models.Field):
         a different string. 
         
         """
+        print "XX", self.validators
+        self.run_validators(value)
         if value is not None and not isinstance(value, PickledObject):
             # We call force_unicode here explicitly, so that the encoded string
             # isn't rejected by the postgresql_psycopg2 backend. Alternatively,
@@ -167,7 +182,8 @@ class PickledObjectField(models.Field):
                         value = safe_eval(value)
                     except SyntaxError, e:
                         log.error(e)
-                        value = str(e)
+                        raise ValidationError(str(e))
+                        return value
                     value = value.decode('utf-8')
                 return value
             except:
@@ -175,6 +191,7 @@ class PickledObjectField(models.Field):
         return value
 
     def value_to_string(self, obj):
+        self.run_validators(obj)
         value = self._get_val_from_obj(obj)
         return self.get_db_prep_value(value)
 

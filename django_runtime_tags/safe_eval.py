@@ -11,6 +11,13 @@
     quotes and does not execute the code.  As far as I can tell it's safe.
     http://nedbatchelder.com/blog/201206/eval_really_is_dangerous.html
 """
+
+# Here are the eval exploits from the article mentioned above:
+# TestEvil_1 os.system('clear', {})
+# TestEvil_3 eval("__import__('os').system('clear')", {'__builtins__':{}})
+# TestEvil_2 eval("__import__('os').system('clear')", {})
+# TestEvil_4 s = """ (lambda fc=(     lambda n: [         c for c in              ().__class__.__bases__[0].__subclasses__()              if c.__name__ == n         ][0]     ):     fc("function")(         fc("code")(             0,0,0,0,"KABOOM",(),(),(),"","",0,""         ),{}     )() )() """ eval(s, {'__builtins__':{}})
+
 import compiler
 import logging
 
@@ -24,7 +31,8 @@ class UnsafeSourceError(Exception):
         self.lineno = getattr(node,"lineno",None)
         
     def __repr__(self):
-        return "UnsafeSourceError Line %d.  %s: %s" % (self.lineno, self.error, self.descr)
+        return "UnsafeSourceError Line %d.  %s: %s" % (
+                self.lineno, self.error, self.descr)
     __str__ = __repr__    
            
 class SafeEval(object):

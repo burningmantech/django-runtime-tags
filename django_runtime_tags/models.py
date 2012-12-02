@@ -7,30 +7,40 @@
     idea to only make available to trusted personnel.  
 """
 import types
-import logging
+from logging import getLogger
 from datetime import datetime
-from django.db import models
+
 from django import template
+from django.db import models
+from django.core.validators import RegexValidator
+
 from django_runtime_tags.pickled_object_field import PickledObjectField
 
-log = logging.getLogger()
+log = getLogger()
 
-register = template.Library()
+tagname_regex = r'^[\dA-Za-z]+[\dA-Za-z_.]*$'
+value_regex = r'(?!.*__)'
 
 class RuntimeTag(models.Model):
+
     key = models.CharField(max_length=50,
             db_index=True,
             unique=True,
             help_text='Use {{ Key }} in the template',
+            validators=[RegexValidator(tagname_regex, u'Not a valid tag name')]
             )
     value = PickledObjectField(editable=True,
             convert=True,
-            help_text='Use True, False, arbitrary Text, or any serializable Python value!'
+            help_text='Use True, False, arbitrary Text, or any serializable Python value!',
+            #couldn't get this to work...
+            #validators=[RegexValidator(tagname_regex, u'Not a valid tag name')]
             )
     valid_start = models.DateTimeField(default=datetime.now(),
             help_text='Make template variable available starting at this date/time',
             )
 
+    class Meta:
+        verbose_name = 'Runtime Tag'
 
     def __unicode__(self):
         return "%s = %s" % (self.key, self.value)
