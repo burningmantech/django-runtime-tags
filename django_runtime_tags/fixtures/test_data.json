@@ -1,0 +1,173 @@
+[
+    {
+        "pk": 3,
+        "model": "rts.runtimesetting",
+        "fields": {
+            "valid_start": "2012-11-29 20:23:17",
+            "value": "VkV2ZW50IFN1Ym1pc3Npb24gbm8gbG9uZ2VyIGFsbG93ZWQuCnAxCi4=",
+            "key": "EventSubmissionDisabledText"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "rts.runtimesetting",
+        "fields": {
+            "valid_start": "2012-11-29 20:23:17",
+            "value": "VkFkZCBZb3VyIEV2ZW50CnAxCi4=",
+            "key": "EventSubmissionEnabledText"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "rts.runtimesetting",
+        "fields": {
+            "valid_start": "2012-11-30 13:52:01",
+            "value": "KGRwMQpTJ2FnZScKcDIKSTEwMDAKc1MnbmFtZScKcDMKUydTYW50YScKcDQKc1MnYmVoYXZpb3InCnA1ClMnbmF1Z2h0eScKcDYKcy4=",
+            "key": "TestDict"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "rts.runtimesetting",
+        "fields": {
+            "valid_start": "2012-11-30 13:52:52",
+            "value": 99,
+            "key": "TestInt"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "rts.runtimesetting",
+        "fields": {
+            "valid_start": "2012-11-30 16:07:20",
+            "value": true,
+            "key": "TestBool"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "rts.runtimesetting",
+        "fields": {
+            "valid_start": "2012-11-30 16:07:20",
+            "value": "KGRwMQpTJ2FnZScKcDIKSTI1CnNTJ25hbWUnCnAzClMnQm9iJwpwNApzUydwZXRzJwpwNQooKGRwNgpTJ3NwZWNpZXMnCnA3ClMnZG9nJwpwOApzZzMKUydyb3ZlcicKcDkKcyhkcDEwCmc3ClMnY2F0JwpwMTEKc2czClMnZmVsaXgnCnAxMgpzdHAxMwpzLg==",
+            "key": "TestComplex"
+        }
+    },
+    {
+        "pk": 14,
+        "model": "rts.runtimesetting",
+        "fields": {
+            "valid_start": "2012-11-30 16:56:20",
+            "value": -1,
+            "key": "TestIntNegative"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "rts.runtimesetting",
+        "fields": {
+            "valid_start": "2012-11-30 14:06:12",
+            "value": false,
+            "key": "BrowseThisYearEvents"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "rts.runtimesetting",
+        "fields": {
+            "valid_start": "2012-11-29 18:16:25",
+            "value": false,
+            "key": "EnableEventSubmission"
+        }
+    },
+    {
+        "pk": 24,
+        "model": "rts.runtimesetting",
+        "fields": {
+            "valid_start": "2012-11-30 19:22:44",
+            "value": "VsdhIHRlIHZhIHRy6HMgYmllbiEKcDEKLg==",
+            "key": "TestNonASCII"
+        }
+    },
+    {
+        "pk": 15,
+        "model": "rts.runtimesetting",
+        "fields": {
+            "valid_start": "2020-05-31 17:10:15",
+            "value": "VlNob3VsZCBOT1QgYmUgYXZhaWxhYmxlIGluIHRlbXBsYXRlCnAxCi4=",
+            "key": "TestFutureDate"
+        }
+    },
+    {
+        "pk": 28,
+        "model": "rts.runtimesetting",
+        "fields": {
+            "valid_start": "2012-11-30 20:35:23",
+            "value": "Vlx1NGY2MFx1NjYyZlx1OGZkOVx1NGU0OFx1NzBlZFx1ZmYwY1x1NzA2Ylx1NGViYQpwMQou",
+            "key": "TestNonASCIIChinese"
+        }
+    },
+    {
+        "pk": 18,
+        "model": "rts.runtimesetting",
+        "fields": {
+            "valid_start": "2012-11-30 18:31:44",
+            "value": "VkRvbid0IG1lc3Mgd2l0aCBUZXhhcyEKcDEKLg==",
+            "key": "TestSingleQuote"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "rts.runtimesetting",
+        "fields": {
+            "valid_start": "2012-11-30 14:07:58",
+            "value": "Vignb25lJywgJ3RoaW5nJywgJ2FmdGVyJywgJ2Fub3RoZXInKQpwMQou",
+            "key": "TestTuple"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "rts.runtimesetting",
+        "fields": {
+            "valid_start": "2012-11-30 13:52:20",
+            "value": "VjEuNjE4CnAxCi4=",
+            "key": "TestFloat"
+        }
+    },
+    {
+        "pk": 19,
+        "model": "rts.runtimesetting",
+        "fields": {
+            "valid_start": "2012-11-30 18:46:13",
+            "value": "VlRoZXkgd2F0Y2ggRm94ICJOZXdzIgpwMQou",
+            "key": "TestDoubleQuote"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "rts.runtimesetting",
+        "fields": {
+            "valid_start": "2012-11-30 16:07:20",
+            "value": "VmRpY3QKcDEKLg==",
+            "key": "TestReservedWord"
+        }
+    },
+    {
+        "pk": 16,
+        "model": "rts.runtimesetting",
+        "fields": {
+            "valid_start": "2012-11-30 17:30:23",
+            "value": "VlNwYWNlcyBpbiBrZXkgbmFtZXMgYXJlIE5PVCByZWNvbW1lbmRlZCEKcDEKLg==",
+            "key": "Test Space"
+        }
+    },
+    {
+        "pk": 29,
+        "model": "rts.runtimesetting",
+        "fields": {
+            "valid_start": "2012-11-30 17:30:23",
+            "value": "VlNwYWNlcyBpbiBrZXkgbmFtZXMgYXJlIE5PVCByZWNvbW1lbmRlZCEKcDEKLg==",
+            "key": "TestList"
+        }
+    }
+]
