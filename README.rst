@@ -58,7 +58,7 @@ like this.
 
 ::
 
-    python manage loaddate django_runtime_tags/test_data
+    python manage loaddata django_runtime_tags/test_data
 
     python manage.py runserver 0.0.0.0:8000
 
