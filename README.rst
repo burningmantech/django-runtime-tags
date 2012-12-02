@@ -35,6 +35,35 @@ Add the RuntimeTag model to the database with
 
     python manage.py syncdb
 
+Optionally, you can add a test template to urls.py, for example
+
+::
+
+    from django.views.generic.simple import direct_to_template
+    if settings.DEBUG:
+        urlpatterns += \
+            patterns('',
+                  url(r'^rtt/$', direct_to_template,
+                      { 'template':"django_runtime_tags/tests.html" }),
+            )
+
+Then, just go the Django admin, and set some Tags to use in your templates.
+
+Testing
+-------
+
+If you added the test link to your urls.py file, you can test your installation
+like this.
+
+::
+
+    python manage loaddate django_runtime_tags/test_data
+
+    python manage.py runserver 0.0.0.0:8000
+
+    http://localhost:8000/rtt/
+
+
 Dependencies
 ------------
 

@@ -1,4 +1,3 @@
-{% extends "base.html" %}
 {% load i18n %}
 {% block head_title %}{% trans "Welcome" %}{% endblock %}
 {% block body %}
@@ -20,7 +19,7 @@
 <tr><td>TestDict</td><td>{{  TestDict  }}</td></tr>
 <tr><td>TestDoubleQuote</td><td>{{  TestDoubleQuote  }}</td></tr>
 <tr><td>TestFloat</td><td>{{  TestFloat  }}</td></tr>
-<tr><td>TestFutureDate</td><td>{{  TestFutureDate  }}</td></tr>
+<tr><td>TestFutureDate</td><td>{{  TestFutureDate  }}(should be blank)</td></tr>
 <tr><td>TestIntNegative</td><td>{{  TestIntNegative  }}</td></tr>
 <tr><td>TestInt</td><td>{{  TestInt  }}</td></tr>
 <tr><td>TestList</td><td>{{  TestList  }}</td></tr>
@@ -28,6 +27,6 @@
 <tr><td>TestNonASCII</td><td>{{  TestNonASCII  }}</td></tr>
 <tr><td>TestReservedWord</td><td>{{  TestReservedWord  }}</td></tr>
 <tr><td>TestSingleQuote</td><td>{{  TestSingleQuote  }}</td></tr>
-<tr><td>Test Space</td><td>{{  "(fails)"  }}</td></tr>
+<tr><td>Test Space</td><td>(expected to fail)</td></tr>
 </table>
 {% endblock %}

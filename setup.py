@@ -16,7 +16,7 @@ setup(
     url = 'http://pypi.python.org/pypi/django-runtime-tags/',
     author = 'Liam Kirsher',
     author_email = 'liamk@numenet.com',
-    zip_safe = True,
+    zip_safe = False,
 
     packages = find_packages(exclude=['tests', 'examples']),
     include_package_data = True,
