@@ -1,9 +1,15 @@
 """ Provides safe version of eval.
-    Note that the input to this field is limited to trusted staff, so
-    eval exploits are not so much a concern...
     http://code.activestate.com/recipes/364469-safe-eval/
+
+    Note that the input to this field is limited to trusted staff, so
+    eval exploits are not so much a concern.
     This file contains the modifications mentioned in the comments for
-    unary '-' and bool values.
+    unary '-' and bool values.  It also prevents *any* value containing '__'.
+
+    The article below discusses some of the evils of eval.  However, I've
+    tested this module against these exploits and it just wraps them in
+    quotes and does not execute the code.  As far as I can tell it's safe.
+    http://nedbatchelder.com/blog/201206/eval_really_is_dangerous.html
 """
 import compiler
 import logging
@@ -68,6 +74,11 @@ class SafeEvalWithErrors(SafeEval):
 
 def safe_eval(source, fail_on_error = True):
     walker = fail_on_error and SafeEvalWithErrors() or SafeEval()
+
+    # catches eval exploits -- already handled, this is a backstop
+    if '__' in source:
+        raise SyntaxError("'__' is not allowed!")
+
     try:
         ast = compiler.parse(source,"eval")
     except SyntaxError, err:

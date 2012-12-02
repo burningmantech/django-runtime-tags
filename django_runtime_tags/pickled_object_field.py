@@ -156,7 +156,6 @@ class PickledObjectField(models.Field):
                 if value.lower() in ('true', 't'): value = u'True'
                 elif value.lower() in ('false', 'f'): value = u'False'
                 try:
-                    #ret = safe_eval(value.encode('utf-8'))
                     value = safe_eval(value)
                 except (SyntaxError, UnicodeEncodeError,
                         UnsafeSourceError), e:
@@ -164,7 +163,11 @@ class PickledObjectField(models.Field):
                         log.warn(e)
                     value = value.encode('utf-8')
                     value = "'%s'" % value.replace("'", "\\'")
-                    value = safe_eval(value)
+                    try:
+                        value = safe_eval(value)
+                    except SyntaxError, e:
+                        log.error(e)
+                        value = str(e)
                     value = value.decode('utf-8')
                 return value
             except:
