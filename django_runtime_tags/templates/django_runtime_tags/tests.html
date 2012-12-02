@@ -61,5 +61,14 @@
             {% endfor %}
         </ul>
     </td></tr>
+    <tr><td>TestComplex</td><td>
+            {{TestComplex.name}} is {{TestComplex.age}} years old.<br/> 
+            He has {{TestComplex.pets|length}} pets:<br/>
+            <ul>
+                {% for animal in TestComplex.pets %}
+                <li>A {{animal.species}} named {{animal.name}}</li>
+                {% endfor %}
+            </ul>
+    </td></tr>
 </table>
 

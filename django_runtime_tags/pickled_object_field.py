@@ -144,8 +144,6 @@ class PickledObjectField(models.Field):
         a different string. 
         
         """
-        print "XX", self.validators
-        self.run_validators(value)
         if value is not None and not isinstance(value, PickledObject):
             # We call force_unicode here explicitly, so that the encoded string
             # isn't rejected by the postgresql_psycopg2 backend. Alternatively,
@@ -191,7 +189,6 @@ class PickledObjectField(models.Field):
         return value
 
     def value_to_string(self, obj):
-        self.run_validators(obj)
         value = self._get_val_from_obj(obj)
         return self.get_db_prep_value(value)
 
