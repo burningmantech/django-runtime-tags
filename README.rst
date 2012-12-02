@@ -16,9 +16,10 @@ Python Package Index.
 
 ::
 
-    pip install django-runtime-tags
+    pip install git+ssh://git@github.com/burningmantech/django-runtime-tags.git
 
-You may need github access credentials.  Obtain them from Burning Man tech.
+You will need to have your credentials added to the github access list
+by someone from Burning Man tech.
 
 Add the context processor to the settings.py file:
 
