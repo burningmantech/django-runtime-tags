@@ -80,4 +80,6 @@ Security
 This is intended to be accessed via the Django admin, and expected to be used
 by staff with admin privileges.  Part of its flexibility comes from being able
 to eval(uate) tag values as Python code.  A safe(er) version of eval is used,
-but it *has not been tested to withstand deliberate exploits*.
+and it has been tested to withstand deliberate exploits.  However, it's probably
+safest not to use in situations with untrusted input.  (See comments in 
+code for details.) 
