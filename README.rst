@@ -21,9 +21,15 @@ Python Package Index.
 You will need to have your credentials added to the github access list
 by someone from Burning Man tech.
 
-Add the context processor to the settings.py file:
+Add the app and context processor to the settings.py file:
 
 ::
+
+    INSTALLED_APPS = (
+        ...,
+        'django_runtime_tags',
+        )   
+
 
     TEMPLATE_CONTEXT_PROCESSORS = (
         ...,
