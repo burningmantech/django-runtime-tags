@@ -40,13 +40,9 @@ Optionally, you can add a test template to urls.py, for example
 
 ::
 
-    from django.views.generic.simple import direct_to_template
     if settings.DEBUG:
-        urlpatterns += \
-            patterns('',
-                  url(r'^rtt/$', direct_to_template,
-                      { 'template':"django_runtime_tags/tests.html" }),
-            )
+        from django_runtime_tags.urls import rtt_test_urlpatterns
+        urlpatterns += rtt_test_urlpatterns
 
 Then, just go the Django admin, and set some Tags to use in your templates.
 
@@ -62,8 +58,8 @@ like this.
 
     python manage.py runserver 0.0.0.0:8000
 
-    http://localhost:8000/rtt/
-
+    http://localhost:8000/rtt/test/
+    
 
 Dependencies
 ------------

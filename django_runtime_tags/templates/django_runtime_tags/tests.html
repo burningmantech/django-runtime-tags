@@ -10,7 +10,7 @@
         border-collapse:collapse;
     }
     table, td, td {
-        background-color:#ded;
+        background-color:#efe;
         border:1px solid;
         padding:4px 8px 4px 8px;
         vertical-align:top;
@@ -19,11 +19,30 @@
         font-size:.8em;
         margin-bottom:1em;
     }
+    .error {
+        color:red;
+        font-weight:bold;
+    }
+    code {
+        margin-left:4em;
+        padding:.25em;
+        color:black;
+        background-color:#efe;
+        border:1px solid #bbb;
+    }
 </style>
 </head>
 <body>
 <table>
 <h1>Runtime Tag Tests</h1>
+<h3>Test Tags</h3>
+{% if not TestDict %}
+<p class="error">The "Test" runtime tags are missing.</p>
+<p>Try adding them with:</p>
+<code>
+    python manage.py loaddata django_runtime_tags/test_data
+</code>
+{% else %}
 <div class="time">It is {% now "jS F Y H:i" %}</div>
 <tr><th>Key</th><th>Value</th></tr>
 <tr><td>TestBool</td><td>{{  TestBool  }}</td></tr>
@@ -41,7 +60,7 @@
 <tr><td>TestSingleQuote</td><td>{{  TestSingleQuote  }}</td></tr>
 <tr><td>TestTuple</td><td>{{  TestTuple  }}</td></tr>
 </table>
-<h3>More Tests</h1>
+<h3>More Tests</h3>
 <table>
 <tr><th>Key</th><th>Value</th></tr>
 <tr><td>{{ TestInt }} > {{ TestIntNegative }}</td><td>{% if TestInt > TestIntNegative %}True{% else %}False{% endif %}</td></tr>
@@ -72,3 +91,22 @@
     </td></tr>
 </table>
 
+<h3>List All</h1>
+<table>
+<tr><th>Key</th><th>Value</th></tr>
+{% for r in RUNTIME_TAGS %}
+<tr><td>{{r.key}}</td><td>{{r.value}}</td></tr>
+{% endfor %}
+</table>
+{% endif %}
+<h3>Current Tags</h1>
+{% if RUNTIME_TAGS|length > 0 %}
+<table>
+<tr><th>Key</th><th>Value</th></tr>
+{% for r in RUNTIME_TAGS %}
+<tr><td>{{r.key}}</td><td>{{r.value}}</td></tr>
+{% endfor %}
+</table>
+{% else %}
+None
+{% endif %}
