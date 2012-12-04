@@ -1,11 +1,9 @@
-import re
 from django.contrib import admin
-from django.forms import ModelForm, ValidationError, RegexField
-from django_runtime_tags.models import RuntimeTag, tagname_regex
-
+from models import RuntimeTag
 
 class RuntimeTagAdmin(admin.ModelAdmin):
     ordering = ['key']
+    search_fields = ['key']
 
     class Media:
         css = { 'all':('django_runtime_tags/css/rtt.css',) }

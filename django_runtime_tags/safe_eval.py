@@ -80,12 +80,13 @@ class SafeEvalWithErrors(SafeEval):
     # Add more specific errors if desired
             
 
-def safe_eval(source, fail_on_error = True):
+def safe_eval(source, fail_on_error=True, backstop_underscores=True):
     walker = fail_on_error and SafeEvalWithErrors() or SafeEval()
 
     # catches eval exploits -- already handled, this is a backstop
-    if '__' in source:
-        raise SyntaxError("'__' is not allowed!")
+    if backstop_underscores:
+        if '__' in source:
+            raise SyntaxError("'__' is not allowed!")
 
     try:
         ast = compiler.parse(source,"eval")

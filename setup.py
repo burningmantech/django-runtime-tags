@@ -21,7 +21,7 @@ setup(
     packages = find_packages(exclude=['tests', 'examples']),
     include_package_data = True,
     exclude_package_data = {'': ['.gitignore']},
-    install_requires = [ 'Django >= 1.3', ],
+    #install_requires = [ 'Django == 1.3.1'],
     setup_requires = [ 'setuptools_git >= 0.3', ],
 
     tests_require = ['nose'],
@@ -30,7 +30,7 @@ setup(
     classifiers = [
         'Development Status :: 3 - Alpha',
         'Environment :: Web Environment',
-        'Framework :: Django',
+        #'Framework :: Django',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
         'Natural Language :: English',

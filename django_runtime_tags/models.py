@@ -22,22 +22,27 @@ tagname_regex = r'^[\dA-Za-z]+[\dA-Za-z_.]*$'
 value_regex = r'(?!.*__)'
 
 class RuntimeTag(models.Model):
-
-    key = models.CharField(max_length=50,
-            db_index=True,
-            unique=True,
-            help_text='Use {{ Key }} in the template',
-            validators=[RegexValidator(tagname_regex, u'Not a valid tag name')]
-            )
-    value = PickledObjectField(editable=True,
-            convert=True,
-            help_text='Use True, False, arbitrary Text, or any serializable Python value!',
-            #couldn't get this to work...
-            #validators=[RegexValidator(tagname_regex, u'Not a valid tag name')]
-            )
-    valid_start = models.DateTimeField(default=datetime.now(),
-            help_text='Make template variable available starting at this date/time',
-            )
+    key = models.CharField(
+        db_index=True,
+        max_length=50,
+        unique=True,
+        help_text='Use {{ Key }} in the template',
+        validators=[RegexValidator(tagname_regex, u'Not a valid tag name')]
+        )
+    value = PickledObjectField(
+        editable=True,
+        convert=True,
+        help_text='Use True, False, arbitrary Text, or any serializable Python value!',
+        #couldn't get this to work...
+        #validators=[RegexValidator(tagname_regex, u'Not a valid tag name')]
+        )
+    valid_start = models.DateTimeField(
+        default=datetime.now(),
+        help_text='Make template variable available starting at this date/time',
+        )
+    description = models.TextField(
+        null=True,
+        )
 
     class Meta:
         verbose_name = 'Runtime Tag'
