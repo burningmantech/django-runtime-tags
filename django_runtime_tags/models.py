@@ -42,6 +42,7 @@ class RuntimeTag(models.Model):
         )
     description = models.TextField(
         null=True,
+        blank=True,
         )
 
     class Meta:
