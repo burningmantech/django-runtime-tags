@@ -16,7 +16,7 @@ from django.core.validators import RegexValidator
 
 from django_runtime_tags.pickled_object_field import PickledObjectField
 
-log = getLogger()
+log = getLogger('django-runtime-tags')
 
 tagname_regex = r'^[\dA-Za-z]+[\dA-Za-z_.]*$'
 value_regex = r'(?!.*__)'

@@ -21,7 +21,7 @@
 import compiler
 import logging
 
-log = logging.getLogger() 
+log = getLogger('django-runtime-tags')
 
 class UnsafeSourceError(Exception):
     def __init__(self,error,descr = None,node = None):
