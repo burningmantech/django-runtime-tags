@@ -3,7 +3,7 @@
 """
 
 import re
-import logging
+from logging import getLogger
 from copy import deepcopy
 from base64 import b64encode, b64decode
 from zlib import compress, decompress
@@ -18,7 +18,7 @@ from django.core.exceptions import ValidationError
 
 from django_runtime_tags.safe_eval import safe_eval, UnsafeSourceError
 
-log = logging.getLogger()
+log = getLogger('django-runtime-tags')
 
 class PickledObject(str):
     """

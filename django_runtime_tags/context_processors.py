@@ -6,7 +6,7 @@ from pprint import PrettyPrinter
 from datetime import datetime
 from models import RuntimeTag
 
-log = getLogger()
+log = getLogger('django-runtime-tags')
 
 def add_tags(request):
     """Add template tags defined via Django admin to request context."""
