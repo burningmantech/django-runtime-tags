@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import url, patterns
-from django.views.generic import TemplateView
+from django.views.generic.base import TemplateView
 
 rtt_test_urlpatterns = patterns('',
     url(r'^rtt/test/$', TemplateView.as_view("django_runtime_tags/tests.html")),
