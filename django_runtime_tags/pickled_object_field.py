@@ -133,7 +133,7 @@ class PickledObjectField(models.Field):
         if '__' in value:
             raise ValidationError("'__' not allowed.")
 
-    def get_db_prep_value(self, value):
+    def get_db_prep_value(self, value, *args, **kwargs):
         """
         Pickle and b64encode the object, optionally compressing it.
         
