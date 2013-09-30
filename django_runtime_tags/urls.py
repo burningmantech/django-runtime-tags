@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import url, patterns
-from django.views.generic.simple import direct_to_template
+from django.views.generic import TemplateView
 
 rtt_test_urlpatterns = patterns('',
-    url(r'^rtt/test/$', direct_to_template, { 'template':"django_runtime_tags/tests.html" }),
+    url(r'^rtt/test/$', TemplateView.as_view("django_runtime_tags/tests.html")),
 )
 
