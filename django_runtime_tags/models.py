@@ -8,12 +8,11 @@
 """
 import types
 from logging import getLogger
-from datetime import datetime
 
 from django import template
 from django.db import models
 from django.core.validators import RegexValidator
-
+from django.utils.timezone import now
 from django_runtime_tags.pickled_object_field import PickledObjectField
 
 log = getLogger('django-runtime-tags')
