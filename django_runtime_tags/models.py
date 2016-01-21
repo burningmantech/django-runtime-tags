@@ -36,7 +36,7 @@ class RuntimeTag(models.Model):
         #validators=[RegexValidator(tagname_regex, u'Not a valid tag name')]
         )
     valid_start = models.DateTimeField(
-        default=timezone.now(),
+        default=timezone.now,
         help_text='Make template variable available starting at this date/time',
         )
     description = models.TextField(

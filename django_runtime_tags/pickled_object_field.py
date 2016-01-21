@@ -72,7 +72,10 @@ class PickledObjectField(models.Field):
 
     
     """
-    __metaclass__ = models.SubfieldBase
+    RemovedInDjango110Warning: SubfieldBase has been deprecated. Use
+    Field.from_db_value instead.
+
+    #__metaclass__ = models.SubfieldBase
 
     description = 'Any basic Python object can be pickled and stored'
     
