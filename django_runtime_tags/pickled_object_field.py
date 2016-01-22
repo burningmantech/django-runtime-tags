@@ -72,10 +72,6 @@ class PickledObjectField(models.Field):
 
     
     """
-    #RemovedInDjango110Warning: SubfieldBase has been deprecated. Use
-    #Field.from_db_value instead.
-    #__metaclass__ = models.SubfieldBase
-
     description = 'Any basic Python object can be pickled and stored'
     
     def __init__(self, *args, **kwargs):
@@ -106,6 +102,14 @@ class PickledObjectField(models.Field):
             return self.default
         # If the field doesn't have a default, then we punt to models.Field.
         return super(PickledObjectField, self).get_default()
+
+    # Changed in Django 1.8:
+    # Historically, Django provided a metaclass called SubfieldBase which
+    # always called to_python() on assignment. This did not play nicely with
+    # custom database transformations, aggregation, or values queries, so it
+    # has been replaced with from_db_value().
+    def from_db_value(self, value, expression, connection, context):
+        return self.to_python(value)
 
     def to_python(self, value):
         """
