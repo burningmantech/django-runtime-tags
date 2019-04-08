@@ -26,7 +26,7 @@ class RuntimeTag(models.Model):
         max_length=50,
         unique=True,
         help_text='Use {{ Key }} in the template',
-        validators=[RegexValidator(tagname_regex, u'Not a valid tag name')]
+        validators=[RegexValidator(tagname_regex, 'Not a valid tag name')]
         )
     value = PickledObjectField(
         editable=True,

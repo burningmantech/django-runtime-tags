@@ -8,7 +8,7 @@ from copy import deepcopy
 from base64 import b64encode, b64decode
 from zlib import compress, decompress
 try:
-    from cPickle import loads, dumps
+    from pickle import loads, dumps
 except ImportError:
     from pickle import loads, dumps
 
@@ -170,21 +170,21 @@ class PickledObjectField(models.Field):
             seems to expect regular (encoded) strings or assumes
             they're ASCII.
         """
-        if isinstance(value, basestring):
+        if isinstance(value, str):
             try:
-                if value.lower() in ('true', 't'): value = u'True'
-                elif value.lower() in ('false', 'f'): value = u'False'
+                if value.lower() in ('true', 't'): value = 'True'
+                elif value.lower() in ('false', 'f'): value = 'False'
                 try:
                     value = safe_eval(value)
                 except (SyntaxError, UnicodeEncodeError,
-                        UnsafeSourceError), e:
+                        UnsafeSourceError) as e:
                     if type(e) == UnsafeSourceError:
                         log.warn(e)
                     value = value.encode('utf-8')
                     value = "'%s'" % value.replace("'", "\\'")
                     try:
                         value = safe_eval(value)
-                    except SyntaxError, e:
+                    except SyntaxError as e:
                         log.error(e)
                         raise ValidationError(str(e))
                         return value

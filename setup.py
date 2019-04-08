@@ -2,7 +2,7 @@ import sys
 try:
     import multiprocessing, logging
 except:
-    print "A more recent version of Python is needed."
+    print("A more recent version of Python is needed.")
     sys.exit(1)
 
 from setuptools import setup, find_packages

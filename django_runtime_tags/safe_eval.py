@@ -90,9 +90,9 @@ def safe_eval(source, fail_on_error=True, backstop_underscores=True):
 
     try:
         ast = compiler.parse(source,"eval")
-    except SyntaxError, err:
+    except SyntaxError as err:
         raise
     try:
         return walker.visit(ast)
-    except UnsafeSourceError, err:
+    except UnsafeSourceError as err:
         raise

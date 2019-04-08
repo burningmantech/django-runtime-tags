@@ -3,7 +3,7 @@ Add runtime variables to all pages
 """
 from logging import getLogger
 from pprint import PrettyPrinter
-from models import RuntimeTag
+from .models import RuntimeTag
 from django.utils.timezone import now
 
 log = getLogger('django-runtime-tags')

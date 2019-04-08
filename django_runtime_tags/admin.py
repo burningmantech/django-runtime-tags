@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import RuntimeTag
+from .models import RuntimeTag
 
 class RuntimeTagAdmin(admin.ModelAdmin):
     ordering = ['key']

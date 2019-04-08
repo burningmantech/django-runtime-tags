@@ -7,7 +7,7 @@ http://nedbatchelder.com/blog/201206/eval_really_is_dangerous.html
 import os
 import json
 import unittest
-from safe_eval import safe_eval, UnsafeSourceError
+from .safe_eval import safe_eval, UnsafeSourceError
 
 # Safe
 BooleanType = True, 'True'
@@ -15,11 +15,11 @@ DictionaryType = { 'red':256, 'green':256, 'blue':256 }, "{ 'red':256, 'green':2
 FloatType = 1.618, '1.618'
 IntType = 100, '100'
 ListType = [1,2,3,4], '[1,2,3,4]'
-LongType = 999999999L, '999999999L'
+LongType = 999999999, '999999999L'
 StringType = 'Testing', "'Testing'"
 TupleType = (1,2,3,4), '(1,2,3,4)'
-UnicodeType = u'Testing', "u'Testing'"
-NonASCIIUnicodeType = u'Voilà', "u'Voilà'"
+UnicodeType = 'Testing', "u'Testing'"
+NonASCIIUnicodeType = 'Voilà', "u'Voilà'"
 
 # Unsafe
 LambdaType = lambda x: x**2, 'lambda x: x**2'
