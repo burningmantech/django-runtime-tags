@@ -13,7 +13,6 @@ except ImportError:
     from pickle import loads, dumps
 
 from django.db import models
-from django.utils.encoding import force_unicode
 from django.core.exceptions import ValidationError
 
 from django_runtime_tags.safe_eval import safe_eval, UnsafeSourceError
@@ -159,7 +158,7 @@ class PickledObjectField(models.Field):
             # doing things this way is much easier.
             if self.convert:
                 value = self.value_convert(value)
-            value = force_unicode(dbsafe_encode(value, self.compress))
+            value = dbsafe_encode(value, self.compress)
         return value
 
     def value_convert(self, value):
