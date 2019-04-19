@@ -47,6 +47,6 @@ class RuntimeTag(models.Model):
     class Meta:
         verbose_name = 'Runtime Tag'
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s = %s" % (self.key, self.value)
 
