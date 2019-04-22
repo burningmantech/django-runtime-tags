@@ -18,7 +18,6 @@
 # TestEvil_2 eval("__import__('os').system('clear')", {})
 # TestEvil_4 s = """ (lambda fc=(     lambda n: [         c for c in              ().__class__.__bases__[0].__subclasses__()              if c.__name__ == n         ][0]     ):     fc("function")(         fc("code")(             0,0,0,0,"KABOOM",(),(),(),"","",0,""         ),{}     )() )() """ eval(s, {'__builtins__':{}})
 
-import compiler
 from logging import getLogger
 
 log = getLogger('django-runtime-tags')
@@ -89,7 +88,7 @@ def safe_eval(source, fail_on_error=True, backstop_underscores=True):
             raise SyntaxError("'__' is not allowed!")
 
     try:
-        ast = compiler.parse(source,"eval")
+        ast = compile.parse(source,"eval")
     except SyntaxError as err:
         raise
     try:
