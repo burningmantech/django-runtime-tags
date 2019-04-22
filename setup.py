@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'django-runtime-tags',
-    version = '0.1.3',
+    version = '0.1.4',
     description = 'Set template tags via Django admin interface',
     long_description = open('README.rst').read(),
     keywords = 'Django runtime template tags',
@@ -21,7 +21,7 @@ setup(
     packages = find_packages(exclude=['tests', 'examples']),
     include_package_data = True,
     exclude_package_data = {'': ['.gitignore']},
-    #install_requires = [ 'Django == 1.3.1'],
+    install_requires = [ 'Django >= 2.1.0'],
     setup_requires = [ 'setuptools_git >= 0.3', ],
 
     tests_require = ['nose'],
