@@ -2,20 +2,15 @@
     Copied from http://djangosnippets.org/snippets/1694/
 """
 
-import re
 from logging import getLogger
 from copy import deepcopy
 from base64 import b64encode, b64decode
 from zlib import compress, decompress
-try:
-    from pickle import loads, dumps
-except ImportError:
-    from pickle import loads, dumps
+from ast import literal_eval
+from pickle import loads, dumps
 
 from django.db import models
 from django.core.exceptions import ValidationError
-
-from django_runtime_tags.safe_eval import safe_eval, UnsafeSourceError
 
 log = getLogger('django-runtime-tags')
 
@@ -48,6 +43,9 @@ def dbsafe_encode(value, compress_object=False):
         value = b64encode(dumps(deepcopy(value)))
     else:
         value = b64encode(compress(dumps(deepcopy(value))))
+
+    value = value.decode()
+
     return PickledObject(value)
 
 def dbsafe_decode(value, compress_object=False):
@@ -134,7 +132,6 @@ class PickledObjectField(models.Field):
         """ Catch this error here so it handled correctly by admin form.
             The '__' can be used in eval exploits -- disallow it.
         """
-        #value_regex = r'(?!.*__)'
         if '__' in value:
             raise ValidationError("'__' not allowed.")
 
@@ -165,29 +162,21 @@ class PickledObjectField(models.Field):
         """ Convert value from string to Python type, if possible.
             Nasty encoding issues, make sure to test values with
             non-ASCII characters!
-            The safe_eval() function uses compiler.parse() which
-            seems to expect regular (encoded) strings or assumes
-            they're ASCII.
         """
         if isinstance(value, str):
             try:
                 if value.lower() in ('true', 't'): value = 'True'
                 elif value.lower() in ('false', 'f'): value = 'False'
                 try:
-                    value = safe_eval(value)
-                except (SyntaxError, UnicodeEncodeError,
-                        UnsafeSourceError) as e:
-                    if type(e) == UnsafeSourceError:
-                        log.warn(e)
-                    value = value.encode('utf-8')
+                    value = literal_eval(value)
+                except (ValueError, SyntaxError) as e:
+                    log.warn('{}, {}'.format(value, e))
                     value = "'%s'" % value.replace("'", "\\'")
                     try:
-                        value = safe_eval(value)
+                        value = literal_eval(value)
                     except SyntaxError as e:
                         log.error(e)
                         raise ValidationError(str(e))
-                        return value
-                    value = value.decode('utf-8')
                 return value
             except:
                 raise
