@@ -21,7 +21,7 @@ setup(
     packages = find_packages(exclude=['tests', 'examples']),
     include_package_data = True,
     exclude_package_data = {'': ['.gitignore']},
-    install_requires = [ 'Django >= 2.1.0'],
+    install_requires = [ 'Django'],
     setup_requires = [ 'setuptools_git >= 0.3', ],
 
     tests_require = ['nose'],
