@@ -105,7 +105,7 @@ class PickledObjectField(models.Field):
     # always called to_python() on assignment. This did not play nicely with
     # custom database transformations, aggregation, or values queries, so it
     # has been replaced with from_db_value().
-    def from_db_value(self, value, expression, connection, context):
+    def from_db_value(self, value, expression, connection):
         return self.to_python(value)
 
     def to_python(self, value):
