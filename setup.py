@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'django-runtime-tags',
-    version = '0.1.4',
+    version = '0.1.5',
     description = 'Set template tags via Django admin interface',
     long_description = open('README.rst').read(),
     keywords = 'Django runtime template tags',
